@@ -1,0 +1,76 @@
+<% layout ('layout/boilerplate')%>
+<div class="row">
+  <h1 class="text-center">Edit Bookshop</h1>
+  <div class="col-md-6 offset-md-3">
+    <form
+      action="/bookshops/<%=bookshop._id %>?_method=PUT"
+      method="POST"
+      novalidate
+      class="validated-form"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input
+          class="form-control"
+          type="text"
+          id="title"
+          name="bookshop[title]"
+          value="<%= bookshop.title%>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Location</label>
+        <input
+          class="form-control"
+          type="text"
+          id="location"
+          name="bookshop[location]"
+          value="<%=bookshop.location%>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="description"
+          name="bookshop[description]"
+          required
+        ><%= bookshop.description%></textarea>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+                <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Add more image(s)...</span>
+                    </label>
+                </div>
+            </div>
+        <% bookshop.images.forEach(function(img, i) { %>
+        <img src="<%= img.thumbnail %> " class="img-thumbnail" alt="" />
+        <div class="form-check-inline">
+          <input
+            type="checkbox"
+            name="deleteImages[]"
+            id="image-<%= i %> "
+            value="<%= img.filename %> "
+          />
+        </div>
+        <label for="image-<%= i %>">Delete?</label>
+        <% }) %>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-info">Update Bookshop</button>
+      </div>
+    </form>
+
+    <a href="/bookshops/<%=bookshop._id%>">Back to Bookshops</a>
+  </div>
+</div>
