@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "bookstore",
+    folder: "10_YELPCAMP_BOOKSTORE",
     allowedFormats: ["jpeg", "png", "jpg", "tiff"],
   },
 });
